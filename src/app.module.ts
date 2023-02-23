@@ -4,6 +4,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { SequelizeModule } from '@nestjs/sequelize'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import * as path from 'path'
+import * as pg from 'pg'
 import { AuthModule } from './auth/auth.module'
 import { BasketsModule } from './baskets/baskets.module'
 import { BasketProducts } from './baskets/models/basket-products.model'
@@ -38,6 +39,7 @@ import { UsersModule } from './users/users.module'
 			envFilePath: '.env',
 		}),
 		SequelizeModule.forRoot({
+			dialectModule: pg,
 			dialect: 'postgres',
 			host: process.env.POSTGRES_HOST,
 			port: Number(process.env.POSTGRES_PORT),
