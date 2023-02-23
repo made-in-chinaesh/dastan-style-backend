@@ -1,9 +1,9 @@
-require('pg')
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
 import { SequelizeModule } from '@nestjs/sequelize'
 import { ServeStaticModule } from '@nestjs/serve-static'
+import * as pg from 'pg'
 import * as path from 'path'
 import { AuthModule } from './auth/auth.module'
 import { BasketsModule } from './baskets/baskets.module'
@@ -39,6 +39,7 @@ import { UsersModule } from './users/users.module'
 			envFilePath: '.env',
 		}),
 		SequelizeModule.forRoot({
+			dialectModule: pg,
 			dialect: 'postgres',
 			host: 'localhost',
 			port: 5432,
